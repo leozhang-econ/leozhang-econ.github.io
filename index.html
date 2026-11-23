@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liaoyuan Zhang</title>
+<meta name="description" content="Liaoyuan Zhang is a PhD student in economics at the University of Colorado Boulder, working on environmental, labor and urban economics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&amp;display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================================
+   LOOK OF THE SITE
+   Everything about colors and fonts is set in this first block.
+   Change a value here and it changes everywhere on the page.
+   ===================================================================== */
+:root {
+  /* Layout: set like a working paper. Section names sit in a left margin
+     column; the content runs in one reading column about 65 characters wide. */
+  --paper:   #f5f8f7;   /* page background */
+  --surface: #ffffff;   /* photo frame, panels */
+  --ink:     #16211f;   /* main text */
+  --muted:   #586661;   /* secondary text */
+  --rule:    #d3dbd8;   /* thin lines */
+  --accent:  #0d5f57;   /* links and small highlights */
+
+  --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+  --margin-col: 10.5rem;
+  --gap: 3rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:   #0f1614;
+    --surface: #161f1d;
+    --ink:     #e2e9e6;
+    --muted:   #99a8a3;
+    --rule:    #2a3734;
+    --accent:  #76cbbb;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper:   #0f1614;
+  --surface: #161f1d;
+  --ink:     #e2e9e6;
+  --muted:   #99a8a3;
+  --rule:    #2a3734;
+  --accent:  #76cbbb;
+  color-scheme: dark;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+h1, h2, h3, h4, p, ul, dl { margin: 0; }
+ul { padding: 0; list-style: none; }
+h1, h2, h3, h4 { text-wrap: balance; }
+
+a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+/* A link with no address yet: shown dotted so you can see what is still to add. */
+a:not([href]) { color: var(--muted); text-decoration-style: dotted; cursor: default; }
+
+.wrap {
+  max-width: calc(var(--margin-col) + var(--gap) + 65ch + 3rem);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ---------- Top bar ---------- */
+.masthead {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+.masthead .wrap {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 0.25rem 2rem;
+  padding-top: 0.85rem; padding-bottom: 0.85rem;
+}
+.site-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem; font-weight: 600;
+  color: var(--ink); text-decoration: none;
+}
+.masthead nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.6rem; }
+.masthead nav a {
+  font-size: 0.9375rem; font-weight: 500;
+  color: var(--muted); text-decoration: none;
+}
+.masthead nav a[href]:hover { color: var(--accent); }
+.masthead nav a:not([href]) { text-decoration: underline dotted; }
+
+/* ---------- Page grid: margin column + reading column ---------- */
+section { scroll-margin-top: 4.5rem; }
+.row {
+  display: grid;
+  grid-template-columns: var(--margin-col) minmax(0, 65ch);
+  column-gap: var(--gap);
+  padding: 3.25rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.row > h2 {
+  font-family: var(--font-body);
+  font-size: 0.8125rem; font-weight: 600;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 0.45rem;
+}
+.stack { display: flex; flex-direction: column; gap: 2.5rem; }
+
+/* ---------- About ---------- */
+.portrait {
+  width: 100%; aspect-ratio: 4 / 5;
+  background: var(--surface);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.portrait img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.intro { display: flex; flex-direction: column; gap: 1.1rem; }
+.intro h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 3.25rem);
+  font-weight: 500; line-height: 1.08; letter-spacing: -0.01em;
+}
+.role { font-size: 1.125rem; color: var(--muted); }
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: 0.3rem 1.25rem; font-size: 0.9375rem; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; }
+.links { display: flex; flex-wrap: wrap; gap: 0.35rem 1.4rem; font-weight: 500; }
+
+/* ---------- Research ---------- */
+.group { display: flex; flex-direction: column; gap: 1.5rem; }
+.group > h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 500; line-height: 1.2;
+  padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);
+}
+.paper { display: flex; flex-direction: column; gap: 0.35rem; }
+.paper h4 { font-family: var(--font-display); font-size: 1.1875rem; font-weight: 600; line-height: 1.3; }
+.meta { font-size: 0.9375rem; color: var(--muted); }
+.paper-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.1rem; font-size: 0.9375rem; font-weight: 500; }
+.summary { font-size: 0.9688rem; margin-top: 0.2rem; }
+.titles { display: flex; flex-direction: column; gap: 0.9rem; }
+.titles li { padding-left: 1.1rem; position: relative; }
+.titles li::before { content: ""; position: absolute; left: 0; top: 0.78em; width: 0.45rem; height: 1px; background: var(--muted); }
+.titles .meta { display: block; }
+
+/* ---------- Rows with a year on the left (education, awards, teaching) ---------- */
+.rows { display: flex; flex-direction: column; }
+.rows li {
+  display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0.15rem 1.25rem;
+  padding: 0.85rem 0; border-bottom: 1px solid var(--rule);
+}
+.rows li:first-child { padding-top: 0; }
+.rows li:last-child { border-bottom: 0; padding-bottom: 0; }
+.when { font-size: 0.9375rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.row-name { font-weight: 600; }
+
+/* ---------- Contact and footer ---------- */
+.contact { display: flex; flex-direction: column; gap: 0.35rem; }
+footer .wrap { padding-top: 1.75rem; padding-bottom: 2.5rem; font-size: 0.875rem; color: var(--muted); }
+
+/* ---------- Narrow screens: one column ---------- */
+@media (max-width: 760px) {
+  .row { grid-template-columns: minmax(0, 1fr); row-gap: 1.25rem; padding: 2.5rem 0; }
+  .portrait { width: 9rem; }
+  .rows li { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================================
+     TOP BAR. The links jump to the sections further down this page.
+     ===================================================================== -->
+<header class="masthead">
+  <div class="wrap">
+    <a class="site-name" href="#about">Liaoyuan Zhang</a>
+    <nav aria-label="Sections">
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+      <!-- CV link: switched off until cv.pdf sits in the same folder as this file.
+           To switch it on, put this line here: <a href="cv.pdf">CV</a> -->
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===================================================================
+       ABOUT
+       =================================================================== -->
+  <section id="about" class="row">
+    <div class="portrait"><img src="photo.jpg" alt="Liaoyuan Zhang" width="640" height="800"></div>
+
+    <div class="intro">
+      <h1>Liaoyuan Zhang</h1>
+      <p class="role">PhD student in Economics, University of Colorado Boulder</p>
+      <dl class="facts">
+        <dt>Fields</dt>
+        <dd>Environmental Economics; Labor and Urban Economics</dd>
+        <dt>Tools</dt>
+        <dd>R, Stata, MATLAB, Dynare</dd>
+        <dt>Languages</dt>
+        <dd>English, Mandarin (native)</dd>
+      </dl>
+      <ul class="links">
+        <li><a href="mailto:lizh4497@colorado.edu">lizh4497@colorado.edu</a></li>
+        <!-- CV link: switched off until cv.pdf sits in the same folder as this file.
+             To switch it on, put this line here: <li><a href="cv.pdf">CV</a></li> -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       RESEARCH. Switched off until there are papers to list.
+       To switch it on: delete the two lines that say SWITCH, fill in the
+       paper, and add <a href="#research">Research</a> to the top bar.
+       Copy one <article class="paper"> ... </article> block per paper.
+       =================================================================== -->
+  <!-- SWITCH: delete this line
+  <section id="research" class="row">
+    <h2>Research</h2>
+    <div class="stack">
+      <div class="group">
+        <h3>Working Papers</h3>
+        <article class="paper">
+          <h4>Paper title</h4>
+          <p class="meta">with Coauthor Name · Draft, Month Year</p>
+          <p class="paper-links"><a href="paper.pdf">PDF</a><a href="slides.pdf">Slides</a></p>
+          <p class="summary">Two or three sentences on the question, the data and the main result.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  SWITCH: delete this line -->
+
+  <!-- ===================================================================
+       BACKGROUND. Copy one <li> ... </li> block for each new line.
+       =================================================================== -->
+  <section id="background" class="row">
+    <h2>Background</h2>
+    <div class="stack">
+
+      <div class="group">
+        <h3>Education</h3>
+        <ul class="rows">
+          <li>
+            <span class="when">2023 – present</span>
+            <div>
+              <p class="row-name">Ph.D. in Economics</p>
+              <p class="meta">University of Colorado Boulder</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">2021 – 2023</span>
+            <div>
+              <p class="row-name">M.A. in Economics</p>
+              <p class="meta">Boston University</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">2017 – 2020</span>
+            <div>
+              <p class="row-name">B.S. in Business, major in Accounting and Finance</p>
+              <p class="meta">Indiana University Bloomington</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3>Fellowships and Awards</h3>
+        <ul class="rows">
+          <li>
+            <span class="when">2023, 2024</span>
+            <div>
+              <p class="row-name">Wyn Owen Graduate Scholarship</p>
+              <p class="meta">Department of Economics, University of Colorado Boulder</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">2024</span>
+            <div>
+              <p class="row-name">Morris E. Garnsey Fellowship</p>
+              <p class="meta">Department of Economics, University of Colorado Boulder</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">2022</span>
+            <div>
+              <p class="row-name">Graduate Student Summer Fellowship research grant</p>
+              <p class="meta">Institute for Global Sustainability, Boston University</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3>Research Experience</h3>
+        <ul class="rows">
+          <li>
+            <span class="when">2022</span>
+            <div>
+              <p class="row-name">Research Fellow</p>
+              <p class="meta">Institute for Global Sustainability, Boston University</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       TEACHING. Not on the CV yet, so this section is switched off.
+       To switch it on: delete the two lines that say SWITCH, fill in the
+       course, and add <a href="#teaching">Teaching</a> to the top bar.
+       =================================================================== -->
+  <!-- SWITCH: delete this line
+  <section id="teaching" class="row">
+    <h2>Teaching</h2>
+    <ul class="rows">
+      <li>
+        <span class="when">Fall 20XX</span>
+        <div>
+          <p class="row-name">ECON 0000: Course title</p>
+          <p class="meta">Teaching Assistant for Prof. Name</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+  SWITCH: delete this line -->
+
+  <!-- ===================================================================
+       CONTACT
+       =================================================================== -->
+  <section id="contact" class="row">
+    <h2>Contact</h2>
+    <div class="contact">
+      <p><a href="mailto:lizh4497@colorado.edu">lizh4497@colorado.edu</a></p>
+      <p class="meta">Department of Economics, University of Colorado Boulder</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Liaoyuan Zhang · Last updated November 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
